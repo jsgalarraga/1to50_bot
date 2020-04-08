@@ -1,3 +1,4 @@
+import json
 from time import sleep
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -5,11 +6,13 @@ from selenium.webdriver.chrome.options import Options
 
 class Game1to50Bot:
     def __init__(self):
+        with open('chrome_driver_path.json', 'r') as f:
+            path = json.load(f)
         options = Options()
         options.add_argument('start-maximized')
         options.add_experimental_option("excludeSwitches", ["enable-automation"])
         options.add_experimental_option('useAutomationExtension', False)
-        self.driver = webdriver.Chrome(chrome_options=options, executable_path='C:\\Users\\jaime\\Documents\\devel\\python\\1to50_bot\\chromedriver.exe')
+        self.driver = webdriver.Chrome(chrome_options=options, executable_path=path)
         self.driver.get('http://zzzscore.com/1to50/en/')
         sleep(1)
         
